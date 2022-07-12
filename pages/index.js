@@ -14,7 +14,7 @@ export default function Home({ products }) {
 
       <main>
         <Header title="Products Page" />
-        <div className="products_container" style={{ display: 'flex', gap: '10px' }}>
+        <div className="products_container" style={{ display: 'flex', gap: '20px' }}>
           {products.map(product => <Product
             key={product.productName}
             name={product.productName}
