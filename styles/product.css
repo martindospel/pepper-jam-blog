@@ -1,0 +1,34 @@
+.product-page {
+  margin: 0;
+  padding: 2em 3em;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-header > h1 {
+  margin: 0;
+}
+
+.product-image {
+  width: 25em;
+  height: 25em;
+  object-fit: contain;
+}
+
+.product-header > button {
+  border: 2px solid blue;
+  border-radius: 4px;
+  background: white;
+  color: blue;
+  font-size: 1em;
+  cursor: pointer;
+  padding: .5em 2.5em;
+  transition: all 0.2s ease-in-out;
+}
+.product-header > button:hover {
+  background: blue;
+  color: white;
+}

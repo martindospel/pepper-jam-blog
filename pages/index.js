@@ -1,10 +1,17 @@
 import Head from 'next/head'
 import Header from '@components/Header'
-import Footer from '@components/Footer'
-import { fetchProducts } from 'util/productsFetcher'
-import Product from '@components/Product'
+import Footer from '@components/Footer';
+import { fetchProducts } from 'util/productsFetcher';
+import Product from '@components/Product';
+import { useRouter } from 'next/router';
 
 export default function Home({ products }) {
+  const router = useRouter();
+
+  const goToProductPage = (id) => {
+    router.push(`/product/${id}`);
+  };
+
   return (
     <div className="container">
       <Head>
@@ -17,6 +24,7 @@ export default function Home({ products }) {
         <div className="products_container" style={{ display: 'flex', gap: '20px' }}>
           {products.map(product => <Product
             key={product.productName}
+            onClick={() => goToProductPage(product.id)}
             name={product.productName}
             description={product.productDescription}
             imageUrl={product.productImage.fields.file.url}></Product>
@@ -32,7 +40,7 @@ export default function Home({ products }) {
 export async function getStaticProps() {
   const res = await fetchProducts();
   const products = res.map((p) => {
-    return p.fields
+    return { ...p.fields, id: p.sys.id }
   });
 
   return {
