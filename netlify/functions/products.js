@@ -46,6 +46,6 @@ exports.handler = async function (event) {
       }),
     }
   }
-  await client.close();
+  client.close();
   return response;
 }
