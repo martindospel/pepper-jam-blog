@@ -15,7 +15,7 @@ export default function Home({ products }) {
   return (
     <div className="container">
       <Head>
-        <title>Next.js Starter!</title>
+        <title>Pepper Shop</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -31,7 +31,6 @@ export default function Home({ products }) {
           )}
         </div>
       </main>
-
       <Footer />
     </div>
   )

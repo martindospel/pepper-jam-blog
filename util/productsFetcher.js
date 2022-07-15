@@ -16,5 +16,3 @@ export async function fetchOneProduct(id) {
   const entry = await client.getEntry(id);
   return entry;
 }
-
-export default { fetchProducts }

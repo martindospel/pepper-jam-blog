@@ -24,10 +24,11 @@ exports.handler = async function (event) {
     && event.httpMethod !== 'POST') {
     return { statusCode: 404 };
   }
+  let response;
   const products = await getProducts();
   const prod = await products.findOne({ name: event.queryStringParameters?.name });
   if (event.httpMethod === 'GET') {
-    return {
+    response = {
       statusCode: prod ? 200 : 403,
       body: prod ? JSON.stringify({
         name: prod?.name,
@@ -38,11 +39,13 @@ exports.handler = async function (event) {
     }
   } else {
     await products.updateOne(prod, { $set: { count: prod.count - 1 } });
-    return {
+    response = {
       statusCode: 200,
       body: JSON.stringify({
         message: 'Decremented',
       }),
     }
   }
+  await client.close();
+  return response;
 }
